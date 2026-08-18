@@ -25,8 +25,21 @@ SECRET_KEY = 'django-insecure-!fd(ozc70@fxl44&#ox0z@_wney332h7kju=6fco#c8mhfu6wm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# quiz_project/settings.py
 
+ALLOWED_HOSTS = ['*']
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this directly below SecurityMiddleware
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    # ... other middleware ...
+]
+
+# Add these lines at the bottom of settings.py
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Application definition
 
@@ -115,9 +128,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#https://github.com/deemohite951-dev/quiz_project.git
+
+# 1. Set your Git email (replace with your actual GitHub email)
+# git config --global user.email "your-email@example.com"
+
+# 2. Set your Git username
+# git config --global user.name "deemohite951-dev"
+
+# 3. Create the commit
+# git commit -m "Initial commit for quiz project"
+
+# 4. Push to GitHub
+# git push -u origin main
