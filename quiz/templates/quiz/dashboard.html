@@ -1,0 +1,41 @@
+{% extends 'quiz/base.html' %}
+{% block content %}
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm text-center p-4">
+            <h4 class="fw-bold">Ready for a challenge?</h4>
+            <p class="text-muted">Test your Python skills against the clock.</p>
+            <a href="{% url 'take_quiz' %}" class="btn btn-success btn-lg">Start Quiz</a>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card border-0 shadow-sm p-4">
+            <h4 class="fw-bold mb-3">Attempt History</h4>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Date & Time</th>
+                            <th>Score</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for attempt in history %}
+                        <tr>
+                            <td>{{ attempt.completed_at|date:"M d, Y H:i" }}</td>
+                            <td><span class="badge bg-primary fs-6">{{ attempt.score }} / {{ attempt.total_questions }}</span></td>
+                            <td>{% widthratio attempt.score attempt.total_questions 100 %}%</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="3" class="text-center text-muted">No quiz attempts recorded yet.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
