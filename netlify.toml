@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/"
+  to = "/dashboard.html"
+  status = 301
+  force = true

@@ -37,7 +37,7 @@ def logout_view(request):
 @login_required
 def dashboard(request):
     history = QuizAttempt.objects.filter(user=request.user).order_by('-completed_at')
-    return render(request, 'quiz/dashboard.html', {'history': history})
+    return render(request, 'quiz/index.html', {'history': history})
 
 @login_required
 def take_quiz(request):
